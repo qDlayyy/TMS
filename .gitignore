@@ -1,5 +1,8 @@
 .DS_Store
+/.idea/
 __pycache__
+.venv/
+*.py[cod]
 TestingArea/
 Lesson_3/test.py
 Lesson_7/practice.py
