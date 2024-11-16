@@ -1,0 +1,5 @@
+DB_NAME = 'Polls'
+DB_USER = 'qDlayyy'
+DB_PASSWORD = 'SlavaBatman'
+DB_HOST = 'localhost'
+DB_PORT = '50000'

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Answer The Poll{% endblock %}
+{% block content %}
+<div class="poll_show">
+    <h1>{{ poll[1] }}</h1>
+    <p class="poll-description">{{ poll[2] }}</p>
+    <div class="divider"></div>
+
+    {% if user_poll_taken %}
+        <div class="form_plug">
+            <span class="plug_text">
+                This poll has been already done by you
+            </span>
+            <span class="plug_text">
+                On {{results[0]['submit_time'].date()}} at {{results[0]['submit_time'].time().replace(microsecond=0)}}
+            </span>
+            <div class="divider"></div>
+            {% for result in results %}
+                <div class="question-block">
+                    <span class="question-title">{{ result['question'] }}</span>
+                    <div class="answers_block">
+                        <span>
+                            {{ result['answer'] }}
+                        </span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <form id="poll-form" class="form" method="POST" action="{{ url_for('submit_poll') }}">
+            <input type="hidden" name="poll_id" value="{{ poll[0] }}">
+            {% for question in questions %}
+                <div class="question-block">
+                    <span class="question-title">{{ question['question_text'] }}</span>
+                    <div class="answers_block">
+                        {% for answer in question['answers'] %}
+                        <div class="answer-option">
+                            <input type="radio" class="input_radio" id="answer-{{ question['question_id'] }}-{{ answer[0] }}" name="{{ question['question_id'] }}" value="{{ answer[0] }}">
+                            <label for="answer-{{ question['question_id'] }}-{{ answer[0] }}">{{ answer[-1] }}</label>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+
+            <button type="submit">Finish the poll</button>
+        </form>
+    {% endif %}
+    </div>
+{% endblock %}

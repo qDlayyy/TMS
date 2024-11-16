@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="poll_creation">
+    <h1>New Poll Creation</h1>
+    <form method="post">
+        <input class="input" type="text" name="poll_title" placeholder="Poll name..." required>
+        <input class="input" type="text" name="poll_desc" placeholder="Poll description... and it's optional">
+
+        <div id="questionsContainer">
+            <div class="question">
+                <label>Question 1:</label>
+                <input class="input" type="text" name="questions[]" placeholder="What is your question?" required>
+                <div>
+                    <label>Answers:</label>
+                    <input class="input" type="text" name="answers[0][]" placeholder="Answer 1; Answer 2;..." required>
+                </div>
+            </div>
+        </div>
+        <button type="button" id="addQuestionButton">+</button>
+        <button type="submit">Create the poll</button>
+    </form>
+
+    <script>
+        let questionCounter = 1;
+        document.getElementById('addQuestionButton').addEventListener('click', function () {
+            const questionsContainer = document.getElementById('questionsContainer');
+
+            const newQuestion = document.createElement('div');
+            newQuestion.classList.add('question');
+            newQuestion.innerHTML = `
+                <label>Question ${questionCounter + 1}:</label>
+                <input class="input" type="text" name="questions[]" placeholder="What is your question?" required>
+                <button type="button" class="remove-question" onclick="this.parentElement.remove()">-</button>
+                <div>
+                    <label>Answers:</label>
+                    <input class="input" type="text" name="answers[${questionCounter}][]" placeholder="Answer 1; Answer 2;" required>
+                </div>
+            `;
+            questionsContainer.appendChild(newQuestion);
+            questionCounter++;
+        });
+    </script>
+</div>
+
+{% endblock %}

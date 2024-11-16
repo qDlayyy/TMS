@@ -1,0 +1,15 @@
+<div class="form_plug">
+    <span>
+        This poll has been already done
+    </span>
+    {% for result in results %}
+        <div class="question-block">
+            <span class="question-title">{{ result['question_text'] }}</span>
+            <div class="answers_block">
+                <span>
+                    {{ result['answer'] }}
+                </span>
+            </div>
+        </div>
+    {% endfor %}
+</div>

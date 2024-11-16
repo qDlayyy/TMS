@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="polls_holder">
+    <div class="plus_holder">
+        <div class="plus_circle">
+            <a href="{{ url_for('create_poll') }}"><i class="fa-solid fa-plus"></i>Create New Poll</a>
+        </div>
+    </div>
+
+    <div class="polls_area">
+        {% if polls %}
+            {% for poll in polls %}
+            <a href="{{ url_for('view_poll', poll_id=poll[0]) }}">
+                <div class="poll">
+                    <div class="upper_line">
+                        <div class="creator_holder">
+                            <span>
+                                by {{ poll[-1] }}
+                            </span>
+                        </div>
+                        <div class="name_holder">
+                            <span>{{ poll[1] }}</span>
+                        </div>
+                        <div class="delete_holder">
+                            <form action="{{ url_for('delete_poll', poll_id=poll[0]) }}" method="post">
+                                <button class="delete_button" type="submit"><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="lower_line">
+                        <p class="text">
+                            {% if poll[2] is not none %}
+                                {{ poll[2] }}
+                            {% else %}
+                                No description
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+        {% else %}
+            {% include 'no_polls_plug.html' %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
