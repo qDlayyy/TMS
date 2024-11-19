@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Nova+Square&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="menu">
+            <div class="logo_holder">
+                <a href="{{ url_for ('home')}}">The Polls</a>
+            </div>
+            <div class="cab_holder">
+                {% if 'user_id' in session %}
+                    <p>{{session.get('username')}}<a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i></a></p>
+                {% else %}
+                    <div class="reg_buttons_holder"><a href="{{ url_for('login') }}">Log in</a><a href="{{ url_for('register') }}">Registration</a></div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="container">
+        {% block content %}{% endblock %}
+        </div>
+    </div>
+
+</body>
+</html>
