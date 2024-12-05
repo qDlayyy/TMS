@@ -1,0 +1,193 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+
+    <div class="post_main_wrapper">
+        <div class="post_holder">
+            <div class="post_upper">
+                <div class="post_title_holder">
+                    <span>
+                        {{ post.title }}
+                    </span>
+                </div>
+                <div class="service_info_holder">
+                    <div class="service_info_box">
+                        <span class="creator">
+                            By {{ post.creator }}
+                        </span>
+                        <div class="buttons_holder">
+
+                            {% if is_removal_and_update_allowed %}
+                                <a href="{% url 'update' post_id=post.id %}" class="access_allowed">
+                                    <i class="fa-solid fa-wrench"></i>
+                                </a>
+                                <a href="{% url 'delete' post_id=post.id%}" class="access_allowed">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            {% else %}
+                                <a href="" class="access_forbidden">
+                                    <i class="fa-solid fa-wrench"></i>
+                                </a>
+                                <a href="" class="access_forbidden">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="service_info_box">
+                        <span class="date">
+                            On {{ post.creation_date }} at {{ post.creation_time }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="post_mid">
+                <div class="post_content_holder">
+                    <div class="rating_holder">
+                        <div class="buttons_holder">
+                            {% if request.session.user_id %}
+                                {% for star in post.rating %}
+                                    <a href="{% url 'rate_post' post_id=post.id score=star.value %}" class="rating_button">{{ star.icon|safe }}</a>
+                                {% endfor %}
+                            {% else %}
+                                {% for star in post.rating %}
+                                    <a href="" class="rating_button rating_button_disabled">{{ star.icon|safe }}</a>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="post_divider"></div>
+                    <div class="post_content_div">
+                        <p>
+                            {{ post.content }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post_comment_section">
+            <div class="section_tile_holder">
+                <span>
+                    Comments Section
+                </span>
+            </div>
+
+                {% if request.session.user_id %}
+                    <div class="form_holder">
+                        <form method="post" class="form">
+                            {% csrf_token %}
+                            <div class="fields_holder">
+                                {{ form.as_p }}
+                            </div>
+                            <div class="button_holder">
+                                <button type="submit">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                {% else %}
+                    <div class="post_comments_form_plug_holder">
+                        <div class="post_comments_form_plug">
+                            <span>
+                                We cannot recognize you. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'registration' %}">Register</a> to leave any comment or rate this post.
+                            </span>
+                        </div>
+                    </div>
+                {% endif %}
+
+            <div class="comment_section_divider"></div>
+            <div class="comments_holder">
+
+                {% if comments %}
+
+                    {% for comment in comments %}
+                        <div class="comment">
+                    <div class="comment_content_part">
+                        <div class="comment_creator_holder">
+                            <span class="comment_creator">
+                                {{ comment.creator }}
+                            </span>
+                            <div class="comment_creation_info">
+                                <span class="comment_creation_date">
+                                    On {{ comment.creation_date }} at {{ comment.creation_time }}
+                                </span>
+
+                                {% if request.session.is_replied and request.session.parent_comm_id == comment.id %}
+                                    <a class="icon_holder chosen" href="{% url 'reply' comment_id=comment.id post_id=post.id %}">
+                                        <i class="fa-regular fa-message"></i>
+                                    </a>
+                                {% else %}
+                                    <a class="icon_holder" href="{% url 'reply' comment_id=comment.id post_id=post.id%}">
+                                        <i class="fa-regular fa-message"></i>
+                                    </a>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div class="comment_content_holder">
+                            <p>
+                                {{ comment.content }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comment_divider"></div>
+
+                    {% if comment.replied_comments %}
+                        {% for reply in comment.replied_comments %}
+                            <div class="replied_comments_holder">
+                                <div class="replied_comment_info_holder">
+                                    <span class="comment_creator">
+                                        {{ reply.creator }}
+
+                                        <span class="comment_creator_span">
+                                            <i class="fa-solid fa-arrows-turn-right"></i>
+                                        </span>
+
+                                        {{ reply.replied_to }}
+                                    </span>
+                                    <div class="comment_creation_info">
+                                        <span class="comment_creation_date">
+                                            On {{ reply.creation_date }} at {{ reply.creation_time }}
+                                        </span>
+                                        {% if request.session.is_replied and request.session.parent_comm_id == reply.id %}
+                                            <a class="icon_holder chosen" href="{% url 'reply' comment_id=reply.id post_id=post.id %}">
+                                                <i class="fa-regular fa-message"></i>
+                                            </a>
+                                        {% else %}
+                                            <a class="icon_holder" href="{% url 'reply' comment_id=reply.id post_id=post.id%}">
+                                                <i class="fa-regular fa-message"></i>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="replied_comment_content_holder">
+                                    <p>
+                                        {{ reply.content }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="reply_comment_divider"></div>
+
+                        {% endfor %}
+                    {% endif %}
+
+                </div>
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="post_comment_plug">
+                        <span>
+                            No comments for this post yet...
+                        </span>
+                    </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

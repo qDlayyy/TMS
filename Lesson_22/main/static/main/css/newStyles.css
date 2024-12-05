@@ -1,0 +1,1218 @@
+body{
+    background-color: #2c2c2c;
+    min-height: 100vh;
+}
+
+.menu{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: #181818;
+}
+
+.logo_wrapper{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo_wrapper img{
+    width: 120px;
+    height: 120px;
+    transition: transform .6s
+}
+
+.logo_wrapper img:hover{
+    transform: scale(1.3);
+}
+
+.logo_wrapper a{
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    transition: color, transform .6s ease;
+}
+
+.logo_wrapper a:hover{
+    color: rgb(113, 204, 218);
+    transform: scale(1.1);
+}
+
+.menu_wrapper{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.menu_wrapper a{
+    text-decoration: None;
+    color: white;
+    transition: color, transform .4s ease;
+}
+
+.menu_wrapper i{
+    padding: 0 5px;
+}
+
+.menu_wrapper a:hover{
+    color: rgb(113, 204, 218);
+    transform: scale(1.3);
+}
+
+.auth_zone{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth_zone span{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    cursor: default;
+}
+
+.auth_zone a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color .5s;
+}
+
+.auth_zone a:hover{
+    color: white
+}
+
+
+/*Main page styles*/
+
+.main_wrapper{
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content_plug{
+    width: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 400px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 20px ;
+
+
+}
+
+.big_text{
+    width: 100%;
+    text-align: center;
+}
+
+.small_text{
+    margin-top: 30px;
+    width: 80%;
+    text-align: center;
+}
+
+.small_text_plug{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.small_text_plug a{
+    color: white;
+    transition: color .5s;
+}
+
+.small_text_plug a:hover{
+    color: rgb(113, 204, 218);
+}
+
+.big_text h1{
+    color: white;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+    cursor: default;
+}
+
+.small_text p{
+    color: rgba(255, 255, 255, 0.5);
+    cursor: default;
+}
+
+
+.posts_holder_wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.posts_holder{
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5%;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.redirect{
+    text-decoration: none;
+}
+
+.redirect:hover .created_at_holder span{
+    color: rgb(255, 255, 255)
+}
+
+.post{
+    text-decoration: none;
+    width: 400px;
+    height: 500px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.post_header{
+    width: 100%;
+    height:20%;
+    cursor: pointer;
+    position: relative;
+}
+
+.created_at_holder{
+    width: 100%;
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 5px
+
+}
+
+.created_at_holder span{
+    font-size: 12px;
+    /*color: rgb(255, 255, 255)*/
+    color: #2c2c2c;
+    transition: color .4s;
+}
+
+.post_name_holder{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post_name_holder span{
+    color: rgb(255, 255, 255);
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+}
+
+
+
+.post_body{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.divider{
+    width: 320px;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    top:0
+}
+
+
+.content_holder{
+    width: 100%;
+    height: 70%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+}
+
+.content_holder p{
+    color: rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    font-size: 13px;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.comment_section{
+    width: 100%;
+    height: 30%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #181818;
+    padding: 10px 0;
+}
+
+.comment_holder{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.comment_box{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.section_name{
+    position: absolute;
+    top: 0
+}
+
+.author{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
+    color: rgb(255, 255, 255)
+}
+
+.comment_box{
+    color: rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    font-size: 13px;
+}
+
+.comment_box:last-child{
+    text-align: start;
+    width: 60%;
+}
+
+.comment_plug{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #181818;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.comment_plug span{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    color: rgb(255, 255, 255)
+}
+
+.post_footer{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post_footer span{
+    color: rgb(255, 255, 255);
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+
+
+.included_text{
+    color: rgba(255, 255, 255, 0.8);
+    cursor: default;
+}
+
+.call_box{
+    margin-top: 30px;
+}
+
+.call_box span{
+    font-size: 120px;
+    color: rgb(113, 204, 218);
+}
+
+.call_box span i{
+    cursor: pointer;
+    animation: phone_ringtone 1s cubic-bezier(0.39, 0.575, 0.565, 1) infinite;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+
+@keyframes phone_ringtone {
+    0%{
+        transform: rotate(0deg) scale(1);
+    }
+    20%{
+        transform: rotate(-10deg) scale(1.2);
+    }
+    40%{
+        transform: rotate(40deg) scale(1.2);
+    }
+    60%{
+        transform: rotate(-20deg) scale(1.1)
+    }
+    80%{
+        transform: rotate(20deg) scale(1.1)
+    }
+    100%{
+        transform: rotate(0deg) scale(1)
+    }
+}
+
+/*Post Detailed*/
+
+.post_main_wrapper{
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.post_holder{
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.post_upper{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.post_title_holder{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #181818;
+    border: 2px solid rgb(113, 204, 218);
+    border-radius: 20px ;
+}
+
+.post_title_holder span{
+    color: rgb(255, 255, 255);
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+}
+
+.service_info_holder{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.service_info_holder_1{}
+
+.service_info_box{
+    width: 100%;
+    height: 50%;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 30px
+}
+
+.buttons_holder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+}
+
+.buttons_holder a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    transition: color .5s;
+}
+
+.access_allowed:hover{
+    color: rgb(113, 204, 218);
+}
+
+.access_forbidden{
+    cursor: default;
+}
+
+.service_info_box:last-child{
+    margin-bottom: 0;
+}
+
+.service_info_box .date{
+    color: rgba(255, 255, 255, 0.5);
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+
+.creator{
+    color: rgb(255, 255, 255);
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+}
+
+.post_mid{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+}
+
+.post_content_holder{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.rating_holder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.rating_button_disabled{
+    cursor: default;
+}
+
+.service_tag_holder{
+    width: 100%;
+    height: 5%;
+    text-align: start;
+    position: absolute;
+    top: 5px
+}
+
+.service_tag_holder span{
+    color: rgba(255, 255, 255, 0.5);
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+}
+
+.post_divider{
+    width: 70%;
+    height: 3px;
+    background-color: white;
+}
+
+.post_content_div{
+    width: 100%;
+    height: 100%;
+    padding: 50px 20px 20px 20px;
+    text-align: center;
+}
+
+.post_content_div p{
+    color: rgba(255, 255, 255, 0.5);
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+
+.post_bottom{
+    width: 100%;
+    height: 5%;
+    text-align: center;
+}
+
+.post_comment_section{
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #181818;
+}
+
+.section_tile_holder{
+    width: 100%;
+    text-align: center;
+}
+
+.section_tile_holder span{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px; !important;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.username_post_comments{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px; !important;
+}
+
+.post_comments_form_plug_holder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.post_comments_form_plug{
+    text-align: center;
+    border: 2px solid white;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 60px 30px;
+}
+
+.post_comments_form_plug span{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    color: white;
+}
+
+.post_comments_form_plug span a{
+    color: rgba(255, 255, 255, 0.5);
+    transition: color .5s;
+}
+
+.post_comments_form_plug span a:hover{
+    color: rgb(113, 204, 218);
+}
+
+.form_holder{
+    width: 100%;
+}
+
+.form{
+    width: 100%;
+    padding: 20px;
+}
+
+.fields_holder{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 150px;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.fields_holder span{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+}
+
+.fields_holder label{
+    display: none;
+}
+
+.fields_holder input, textarea{
+    border: none;
+    outline: none;
+    background-color: #181818;
+    color: white;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.fields_holder textarea{
+    width: 900px;
+    height: 50px;
+}
+
+.fields_holder textarea:focus{
+    border-bottom: 2px solid rgb(113, 204, 218);
+}
+
+.fields_holder input{
+    width: 270px;
+    border-bottom: 2px solid white;
+    transition: border-bottom-color .5s;
+    font-size: 20px;
+}
+
+
+.fields_holder input:focus{
+    border-bottom: 2px solid rgb(113, 204, 218);;
+}
+
+.button_holder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button_holder button{
+    width: 300px;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    border-radius: 5px;
+    box-shadow: none;
+    background-color: #181818;
+    color: white;
+    transition: all .5s;
+    border: 2px solid white;
+    font-size: 20px ;
+
+}
+
+.button_holder button:hover{
+    background-color: rgb(113, 204, 218);
+    border-color: rgb(113, 204, 218);
+}
+
+
+.comment_section_divider{
+    width: 800px;
+    height: 3px;
+    background-color: rgb(113, 204, 218);
+    margin: 20px 0;
+}
+
+.comments_holder{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment{
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment_content_part{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.comment_creator_holder{
+    width: 20%;
+    text-align: center;
+    border-right: 2px solid white;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment_creation_info{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.icon_holder{
+    cursor: pointer;
+    color: #2c2c2c;
+    font-size: 20px;
+    transition: color .5s;
+}
+
+.icon_holder:hover{
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.chosen{
+    color: rgb(113, 204, 218);
+}
+
+.comment_creation_date{
+    font-size: 10px;
+    color: white
+}
+
+.comment_creator{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    color: white;
+}
+
+.comment_creator span{
+    font-size: 15px;
+    color: rgb(113, 204, 218);
+}
+
+.comment_content_holder{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.comment_content_holder p{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: white
+}
+
+.comment_divider{
+    width: 37%;
+    height: 2px;
+    background-color: rgb(113, 204, 218);
+}
+
+.replied_comments_holder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 20%;
+    margin-top: 10px;
+}
+
+.replied_comment_info_holder{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-right: 2px solid white;
+}
+
+.replied_comment_content_holder{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.replied_comment_content_holder{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: white
+}
+
+.reply_comment_divider{
+    width: 30%;
+    background-color: rgb(113, 204, 218);
+    height: 2px;
+    margin: 10px 0 10px 20%;
+}
+
+.post_comment_plug{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.post_comment_plug span{
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    font-size: 30px;
+}
+
+.registration_form_holder{
+    width: 600px;
+    padding: 30px;
+    border: 2px solid white;
+    border-radius: 20px;
+    background-color: #181818;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_header{
+    text-align: center;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    font-size: 30px;
+}
+
+.registration_form_divider{
+    width: 300px;
+    height: 2px;
+    background-color: rgb(113, 204, 218);
+    margin: 20px 0 0;
+}
+
+.error_box{
+    width: 100%;
+    height: 100px;
+    border: 2px solid red;
+    border-radius: 20px;
+    margin: 20px 0 -30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error_box{
+    color: red;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.error_box_none{
+    display: none;
+}
+
+.registration_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 50px 0 20px;
+}
+
+.register_fields_holder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.register_fields_holder label{
+    display: none;
+}
+
+.register_fields_holder input, textarea{
+    border: none;
+    outline: none;
+    background-color: #181818;
+    color: white;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.register_fields_holder textarea{
+    width: 900px;
+    height: 50px;
+}
+
+.register_fields_holder textarea:focus{
+    border-bottom: 2px solid rgb(113, 204, 218);
+}
+
+.register_fields_holder input{
+    width: 270px;
+    border-bottom: 2px solid white;
+    transition: border-bottom-color .5s;
+    font-size: 20px;
+}
+
+
+.register_fields_holder input:focus{
+    border-bottom: 2px solid rgb(113, 204, 218);
+}
+
+
+
+
+/*Post Creation*/
+
+.main_wrapper_creation{
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.additional_position_relative_holder{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 40px 0;
+}
+
+.sides_holder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.post_creation_side{
+    width: 55%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post_created_plug{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #181818;
+}
+
+.post_created_plug span{
+    font-size: 30px;
+    color: white;
+}
+
+.post_created_plug_divider{
+    width: 60%;
+    height: 2px;
+    margin: 20px 0;
+}
+
+.post_created_plug p{
+    text-align: center;
+    font-size: 20px;
+    color: rgba(255, 255, 255, .5)
+}
+
+.post_created_plug p a{
+    color: white;
+    transition: color .5s;
+}
+
+.post_created_plug p a:hover{
+    color: rgb(113, 204, 218);
+}
+
+.post_creation_side:first-child{
+    width: 45%;
+    border-right: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post_creation_side .post{
+    margin: 0;
+}
+
+.post_creation_side_display_none{
+    display: none;
+}
+
+.post_creation_form{
+    width: 600px;
+    padding: 40px 20px;
+    border: 2px solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #181818;
+}
+
+.form_create_fields{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+
+.form_create_fields label{
+    display: none;
+}
+
+.form_create_fields input, textarea{
+    background-color: #181818;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: 2px solid rgb(113, 204, 218);
+    border-radius: 5px;
+    font-family: "Nova Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: white
+}
+
+.form_create_fields input{
+    font-size: 30px;
+    transition: border-bottom-color .5s;
+}
+
+.form_create_fields input:focus{
+    border-color: white;
+}
+
+.form_create_fields textarea{
+    width: 100%;
+}
+
+
+.about_holder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.about_side{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 20px 30px;
+    height: 400px;
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+.about_header_holder{
+    width: 100%;
+    height: 20%;
+}
+
+.about_header{
+    color: white;
+    font-size: 30px;
+}
+
+.about_text_holder{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about_text{
+    color: white;
+    font-size: 20px;
+}

@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block body %}
+    <div class="main_wrapper">
+        <div class="registration_form_holder">
+            <div class="form_header">
+                <span>
+                    Hello!
+                    <br/>Let's get acquainted!
+                </span>
+            </div>
+            <div class="registration_form_divider"></div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="error_box">
+                        <span>
+                            {{ message }}
+                        </span>
+                    </div>
+                {% endfor %}
+            {%  endif %}
+                <form method="post" class="registration_form">
+                    {% csrf_token %}
+                    <div class="register_fields_holder">
+                        {{ form.as_p }}
+                    </div>
+                    <div class="button_holder">
+                        <button type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
+    </div>
+{% endblock %}

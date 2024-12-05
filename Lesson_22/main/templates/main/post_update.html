@@ -1,0 +1,92 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+    <div class="main_wrapper_creation">
+        <div class="sides_holder">
+            <div class="post_creation_side">
+                <div class="post">
+                    <div class="post_header">
+                        <div class="created_at_holder">
+                            <span>
+                                {{ post.creation_date }}
+                            </span>
+                            <span>
+                                {{ post.creation_time }}
+                            </span>
+                        </div>
+                        <div class="post_name_holder">
+                            <span>
+                                {{ post.title }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="post_body">
+                        <div class="divider"></div>
+                        <div class="content_holder">
+                            <p>
+                                {{ post.content }}
+                            </p>
+                        </div>
+                        <div class="comment_section">
+                            {% if post.last_comment %}
+                                <div class="comment_holder">
+                                    <div class="comment_box">
+                                        <span class="section_name">
+                                            Latest Commentator
+                                        </span>
+                                        <span class="author">
+                                            {{ post.comment_creator }}:
+                                        </span>
+                                    </div>
+                                    <div class="comment_box">
+                                        <p>
+                                            {{ post.last_comment }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="comment_plug">
+                                    <span>
+                                        There are no comments for this post. <br/>Be the first one!
+                                    </span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="post_footer">
+                        <span>
+                            By {{ post.creator }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="post_creation_side">
+                {% if request.session.is_post_changed %}
+                    <div class="post_creation_form">
+                        <div class="post_created_plug">
+                            <span>
+                                The post has been updated!
+                            </span>
+                            <div class="post_created_plug_divider"></div>
+                            <p>
+                                The post has been created and now you can see in the left half. You can go to <a href="{% url 'home' %}">Main Page</a> to see all the posts or <a href="{% url 'create' %}">Create</a> a new one.
+                            </p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="additional_position_relative_holder">
+                        <form method="post"  class="post_creation_form">
+                            {% csrf_token %}
+                            <div class="form_create_fields">
+                                {{ form.as_p }}
+                            </div>
+                            <div class="button_holder">
+                                <button type="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

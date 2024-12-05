@@ -1,0 +1,100 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Main page
+{% endblock %}
+
+{% block body %}
+    <div class="main_wrapper">
+        {% if posts %}
+            <div class="posts_holder_wrapper">
+                <div class="posts_holder">
+                    {% for post in posts %}
+                        <a href="{% url 'post_detailed' post_id=post.id %}" class="redirect">
+                            <div class="post">
+                                <div class="post_header">
+                                    <div class="created_at_holder">
+                                        <span>
+                                            {{ post.creation_date }}
+                                        </span>
+                                        <span>
+                                            {{ post.creation_time }}
+                                        </span>
+                                    </div>
+                                    <div class="post_name_holder">
+                                        <span>
+                                            {{ post.title }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="post_body">
+                                    <div class="divider"></div>
+                                    <div class="content_holder">
+                                        <p>
+                                            {{ post.content }}
+                                        </p>
+                                    </div>
+                                    <div class="comment_section">
+                                        {% if post.last_comment %}
+                                            <div class="comment_holder">
+                                                <div class="comment_box">
+                                                    <span class="section_name">
+                                                        Latest Commentator
+                                                    </span>
+                                                    <span class="author">
+                                                        {{ post.comment_creator }}:
+                                                    </span>
+                                                </div>
+                                                <div class="comment_box">
+                                                   <p>
+                                                       {{ post.last_comment }}
+                                                   </p>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="comment_plug">
+                                                <span>
+                                                    There are no comments for this post. <br/>Be the first one!
+                                                </span>
+                                            </div>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                                <div class="post_footer">
+                                    <span>
+                                        By {{ post.creator }}
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% elif posts and not request.session.user_id%}
+            <div class="content_plug">
+                <div class="big_text">
+                    <h1>Well, we can't recognize you</h1>
+                </div>
+                <div class="small_text">
+                    <p class="small_text_plug">
+                        Most of the provided instruments require user identifications and cannot be successfully finished
+                        without it. Please <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'registration' %}">Register</a> to see the list of posts
+                    </p>
+                </div>
+            </div>
+        {% else %}
+            <div class="content_plug">
+                <div class="big_text">
+                    <h1>No created posts yet</h1>
+                </div>
+                <div class="small_text">
+                    <p class="small_text_plug">It seems you are the first user or someone has deleted everything from the database.
+                        Actually, if you see this message everything works pretty well. Just create your first post. </p>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
