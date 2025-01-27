@@ -1,6 +1,6 @@
 .DS_Store
 /.idea/
-__pycache__
+__pycache__/
 .venv/
 *.py[cod]
 TestingArea/
@@ -11,3 +11,4 @@ Lesson19/init_db.py
 Lesson19/secretKey.py
 Lesson_20/init_db.py
 Lesson_20/secretKey.py
+MusicPortal/.env
