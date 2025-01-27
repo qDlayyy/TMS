@@ -1,0 +1,118 @@
+{% load static %}
+{% load sass_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Agu+Display&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <title>{% block title %}{% endblock %}</title>
+    <script>
+
+        function redirectTo(url) {
+            window.location.href = url;
+        }
+
+
+
+        let currentAudio = null; // Хранит текущий воспроизводимый аудиофайл
+        let currentSongTitle = ''; // Хранит заголовок текущей песни
+
+        function playSong(audioUrl, title) {
+            if (currentAudio && currentSongTitle === title) {
+                togglePlayPause(); // Переключаем состояние
+            } else {
+                if (currentAudio) {
+                    currentAudio.pause();
+                }
+
+                currentAudio = new Audio(audioUrl);
+                currentSongTitle = title; // Запоминаем название текущей песни
+                document.getElementById("current-song-title").textContent = title;
+
+                currentAudio.play();
+                updateControls(true); // Включаем кнопки управления
+                document.getElementById("controls").style.display = 'flex'; // Показываем блок управления
+
+                currentAudio.addEventListener('timeupdate', updateTrackProgress); // Обновляем дорожку при изменении времени
+            }
+        }
+
+        function togglePlayPause() {
+            const playPauseButton = document.getElementById("play-pause-button");
+            if (currentAudio) {
+                if (currentAudio.paused) {
+                    currentAudio.play();
+                    playPauseButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    updateControls(true);
+                } else {
+                    currentAudio.pause();
+                    playPauseButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+                    updateControls(false);
+                }
+            }
+        }
+
+        function updateControls(isPlaying) {
+            document.getElementById("play-pause-button").disabled = false; // Кнопка всегда доступна
+            document.getElementById("track-progress").disabled = !isPlaying; // Доступен только во время воспроизведения
+        }
+
+        function updateTrackProgress() {
+            const trackProgress = document.getElementById("track-progress");
+            if (currentAudio.duration > 0) {
+                trackProgress.value = (currentAudio.currentTime / currentAudio.duration) * 100; // Обновляем значение
+            }
+        }
+
+        function setTrackPosition(value) {
+            if (currentAudio) {
+                const newTime = (value / 100) * currentAudio.duration; // Перемещение времени воспроизведения
+                currentAudio.currentTime = newTime;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="menu_bar">
+            <div class="player" id="controls">
+                <span id="current-song-title">Select a song to play</span>
+                <div class="playerDivider"></div>
+                <div class="playerControls">
+                    <input type="range" id="track-progress" value="0" step="1" min="0" max="100" onchange="setTrackPosition(this.value)" disabled>
+                    <button id="play-pause-button" onclick="togglePlayPause()" disabled><i class="fa-solid fa-pause"></i></button>
+                </div>
+            </div>
+            <a class="logo" href="{% url 'home' %}">
+                Chordly
+            </a>
+            <div class="icon_holder">
+                {% if user.is_authenticated %}
+                    <div class="icon" onclick=redirectTo('{% url 'user' %}')>
+                        {% if artist_image %}
+                            <img src="{{ artist_image.url }}" alt="artist">
+                        {% else %}
+                            <i id="icon" class="fa-solid fa-suitcase"></i>
+                        {% endif %}
+                    </div>
+                    <a href="{% url 'logout' %}">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </a>
+                {% else %}
+                    <p class="non_identified_links"><a href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i></a></p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="content">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

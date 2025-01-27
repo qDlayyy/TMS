@@ -1,0 +1,25 @@
+<div class="box_side_body_album" onclick=redirectTo('{% url "album" album_id=album.id %}')>
+    <div class="album_con_holder">
+        <div class="album_icon">
+            {% if album.image %}
+                <img src="{{ album.image.url }}" alt="album image">
+            {% else %}
+                <i class="fa fa-anchor" aria-hidden="true"></i>
+            {% endif %}
+        </div>
+    </div>
+    <div class="album_info_holder">
+        <span class="album_title">
+            {{ album.title }}
+        </span>
+        <div class="album_divider"></div>
+        <span class="album_authors">
+            {{ album.artists }}
+        </span>
+        <div class="album_release_date_holder">
+            <span class="album_release_date">
+                {{ album.release_date }}
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+{% extends 'main/base_registration.html' %}
+
+{% block title %}
+    Song Add
+{% endblock %}
+
+{% block bigUpperText %}
+    So, we are expanding the album!
+{% endblock %}
+
+{% block formName %}
+    Add a new song to {{ album.title }}
+{% endblock %}
+
+{% block form %}
+<form method="post" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.title }}
+    {{ form.artists }}
+    {{ form.genres }}
+    {{ form.audio }}
+    <div class="registration_box_button_holder">
+        <button type="submit" id="submitBtn">
+            Add
+        </button>
+    </div>
+    <script>
+
+    </script>
+</form>
+{% endblock %}
+
+{% block smallBottomText %}
+    Quite adding songs?
+{%  endblock %}
+
+{% block urlToRedirect %}
+    <a href="{% url 'album' album_id=album.id %}">
+        Back to album.
+    </a>
+{% endblock %}
+
+{% block icon %}
+    <i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>
+{% endblock %}

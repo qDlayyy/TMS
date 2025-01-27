@@ -1,0 +1,127 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <div class="album_wrapper">
+        <div class="album_info_block">
+            <div class="albumIconHolder">
+                <div class="albumIcon">
+                    {% if album.image %}
+                        <img src="{{ album.image.url }}" alt="album image">
+                    {% else %}
+                        <i class="fa fa-anchor" aria-hidden="true"></i>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="albumInfoHolder">
+                <div class="albumInfoBox">
+                    <div class="albumInfoHeader">
+                        <span>
+                            {{ album.title }}
+                        </span>
+                    </div>
+                    <div class="albumArtistsHolder">
+                        <span class="albumArtistsBy">
+                            By <span>{{ album.artists }}</span>
+                        </span>
+                    </div>
+                    <div class="albumInfoDividerHolder">
+                        <div class="albumInfoDivider">
+
+                        </div>
+                    </div>
+                    <div class="albumInfoBody">
+                        <p>
+                            {{ album.bio }}
+                        </p>
+                    </div>
+                    <div class="albumInfoBottom">
+                        <span>
+                            {{ album.release_date }}
+                        </span>
+                    </div>
+                </div>
+                <div class="buttons_holder_album" onclick=redirectTo('{% url 'album_like' album.id %}?next={{ request.path }}')>
+                    {% if album.is_favorite %}
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    {% else %}
+                        <i class="fa-regular fa-heart"></i>
+                    {% endif %}
+                </div>
+                {% if is_allowed_to_edit %}
+                    <div class="photoAddIconHolder album_button">
+                        <form method="post" class="form" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="file" name="image" class="file-input" id="file-input" onchange="this.form.submit()" style="display: none">
+                                <button type="button" class="upload-button" id="custom-upload-button">
+                                    <i class="fa fa-camera-retro" aria-hidden="true"></i>
+                                </button>
+                                <script>
+                                    const uploadButton = document.getElementById('custom-upload-button');
+                                    const fileInput = document.getElementById('file-input');
+
+                                    uploadButton.addEventListener('click', () => {
+                                        fileInput.click();
+                                    });
+                                </script>
+                            </form>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="songRow">
+            <div class="musicInfoWrapper musicInfoWrapperAlbum">
+                <div class="musicInfoWrapperHeader">
+                    <span>
+                        Songs
+                    </span>
+                </div>
+                <div class="settingsInfoboxdivider">
+                    <div class="divider">
+
+                    </div>
+                </div>
+                <div class="musicInfoOuterBox">
+                    {% if songs %}
+                        {% for song in songs %}
+                            <div class="musicInfoSongHolder">
+                                {% include 'main/components/home_page_song.html' with song=song %}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="noMusicPlug">
+                            <span>
+                                You haven't uploaded any music yet
+                            </span>
+                        </div>
+                    {% endif %}
+                </div>
+                {% if is_allowed_to_edit %}
+                    <div class="addIconHolder" onclick=redirectTo('{% url 'album_expansion' album_id=album.id %}')>
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="rightIconBox">
+                {% if album.genres %}
+                    <div class="albumGenresHolder">
+                        {% for genre in album.genres %}
+                            <div class="genreHolder">
+                                <span>
+                                    {{ genre }}
+                                </span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                        <div class="albumGenresPlug">
+                            <span>
+                                Genres of the album are generated according to the added music. <br>No songs - no genres!
+                            </span>
+                        </div>
+                    {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

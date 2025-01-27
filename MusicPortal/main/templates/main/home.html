@@ -1,0 +1,67 @@
+{% extends 'main/base.html' %}
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <div class="entrance_screen">
+        <span>
+            Chordly
+        </span>
+        <div class="entrance_screen_text_holder">
+            <p>
+                The endless library of Chords
+            </p>
+        </div>
+    </div>
+    <div class="latest_reveals_screen">
+        <div class="reveals_box">
+            <div class="box_side">
+                <div class="box_side_header">
+                    <span>
+                        The latest released Chordly Albums
+                    </span>
+                    <div class="box_side_divider">
+
+                    </div>
+                </div>
+                <div class="box_side_body">
+                    {% if new_albums %}
+                        {% for new_album in new_albums %}
+                            {% include 'main/components/home_page_album.html' with album=new_album %}
+                        {% endfor %}
+                    {% else %}
+                        <div class="mainPageNoAlbumsPlug">
+                            <span>
+                                No albums have been created yet or none of created have an added song. <br>So, empty albums are not displayed here.
+                            </span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="box_side">
+                <div class="box_side_header">
+                    <span>
+                        Some Chordly Songs for you
+                    </span>
+                    <div class="box_side_divider">
+
+                    </div>
+                </div>
+                <div class="box_side_body">
+                    {% if new_songs %}
+                        {% for song in new_songs %}
+                            {% include 'main/components/home_page_song.html' with song=song%}
+                        {% endfor %}
+                    {% else %}
+                        <div class="mainPageNoContentPlug">
+                            <span>
+                                No songs have been created yet. Become the first artist to create a masterpiece.
+                            </span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

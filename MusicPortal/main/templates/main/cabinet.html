@@ -1,0 +1,138 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Cabinet
+{% endblock %}
+
+
+{% block content %}
+    <div class="settings_screen">
+        <div class="settingsInfoBlock">
+            <div class="settingsSide">
+                <div class="infoBoxChosen">
+                    <div class="settingsInfoboxHeader">
+                        <span>
+                            {{ artist.name  }}
+                        </span>
+                    </div>
+                    <div class="settingsInfoboxdivider">
+                        <div class="divider">
+
+                        </div>
+                    </div>
+                    <div class="settingsInfoboxBody">
+                        {% if artist.bio %}
+                            <span>
+                                    {{ artist.bio }}
+                            </span>
+                        {% else %}
+                            <span>
+                                    No bio for your artist profile yet
+                            </span>
+                        {% endif %}
+                    </div>
+                    <div class="infoBoxIconHolder">
+                        <i class="fa fa-briefcase" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="photoAddIconHolder">
+                    <form method="post" class="form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="image" class="file-input" id="file-input" onchange="this.form.submit()" style="display: none">
+                            <button type="button" class="upload-button" id="custom-upload-button">
+                                <i class="fa fa-camera-retro" aria-hidden="true"></i>
+                            </button>
+                            <script>
+                                const uploadButton = document.getElementById('custom-upload-button');
+                                const fileInput = document.getElementById('file-input');
+
+                                uploadButton.addEventListener('click', () => {
+                                    fileInput.click();
+                                });
+                            </script>
+                        </form>
+                </div>
+                <div class="bioAddIconHolder" onclick=redirectTo("{% url 'bio' %}")>
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="settingsSide" onclick="redirectTo('{% url 'user' %}')">
+                <div class="infoBoxChosen notChosen">
+                    <div class="settingsInfoboxHeader">
+                        <span>Listener Profile</span>
+                    </div>
+                    <div class="infoBoxIconHolder">
+                        <i class="fa fa-trophy" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="musicInfoBlock">
+            <div class="musicInfoRow">
+                <div class="musicInfoRowSide">
+                    <div class="musicInfoWrapper">
+                        <div class="musicInfoWrapperHeader">
+                            <span>
+                                My Songs
+                            </span>
+                        </div>
+                        <div class="settingsInfoboxdivider">
+                            <div class="divider">
+
+                            </div>
+                        </div>
+                        <div class="musicInfoOuterBox">
+                            {% if songs %}
+                                {% for song in songs %}
+                                    <div class="musicInfoSongHolder">
+                                        {% include 'main/components/home_page_song.html' with song=song %}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="noMusicPlug">
+                                    <span>
+                                        You haven't uploaded any music yet.
+                                    </span>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="addIconHolder" onclick=redirectTo('{% url 'new_song' %}')>
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="musicInfoRowSide">
+                    <div class="musicInfoWrapper">
+                        <div class="musicInfoWrapperHeader">
+                            <span>
+                                My Albums
+                            </span>
+                        </div>
+                        <div class="settingsInfoboxdivider">
+                            <div class="divider"></div>
+                        </div>
+
+                        {% if albums %}
+                            <div class="musicInfoOuterBox flex_row">
+                                {% for album in albums %}
+                                    <div class="musicInfoAlbumHolder" onclick=redirectTo('{% url 'album' album_id=album.id %}')>
+                                        {% include 'main/components/cabinet_page_album.html' with album=album %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="musicInfoAlbumPlug">
+                                <span>
+                                    There are no albums with your authorship. Create your first one.
+                                </span>
+                            </div>
+                        {% endif %}
+                        <div class="addIconHolder" onclick=redirectTo('{% url 'new_album' %}')>
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

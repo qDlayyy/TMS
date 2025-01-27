@@ -1,0 +1,27 @@
+<div class="box_side_body_album_cab">
+    <div class="album_con_holder_cab">
+        <div class="album_icon_cab">
+            <div class="albumIcon">
+                {% if album.image %}
+                    <img src="{{ album.image.url }}" alt="album image">
+                {% else %}
+                    <i class="fa fa-anchor" aria-hidden="true"></i>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="album_info_holder_cab">
+        <span class="album_title_cab">
+            {{ album.title }}
+        </span>
+        <div class="album_divider"></div>
+        <span class="album_authors">
+            {{ album.artists }}
+        </span>
+        <div class="album_release_date_holder_cab">
+            <span class="album_release_date">
+                {{ album.release_date }}
+            </span>
+        </div>
+    </div>
+</div>

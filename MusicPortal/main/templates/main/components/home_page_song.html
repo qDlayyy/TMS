@@ -1,0 +1,23 @@
+<div class="song_wrapper" onclick="playSong('{{ song.audio.url }}', '{{ song.title }}')">
+
+    <div class="song_info_holder">
+        <div class="title_author">
+            <span class="song_title">
+                {{ song.title }}
+            </span>
+            <div class="song_divider">
+
+            </div>
+            <span class="song_author">
+                {{ song.artists }}
+            </span>
+        </div>
+        <div class="buttons_holder" onclick=redirectTo('{% url 'song_like' song.id %}?next={{ request.path }}')>
+            {% if song.is_favorite %}
+                <i class="fa fa-heart" aria-hidden="true"></i>
+            {% else %}
+                <i class="fa-regular fa-heart"></i>
+            {% endif %}
+        </div>
+    </div>
+</div>

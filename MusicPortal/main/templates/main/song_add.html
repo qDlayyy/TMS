@@ -1,0 +1,52 @@
+{% extends 'main/base_registration.html' %}
+
+{% block title %}
+    Song Add
+{% endblock %}
+
+{% block bigUpperText %}
+    Greate, a new song is arriving!
+{% endblock %}
+
+{% block formName %}
+    Add your song description
+{% endblock %}
+
+{% block form %}
+<form method="post" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.title }}
+    {{ form.artists }}
+    {{ form.genres }}
+    {{ form.audio }}
+{#    <div class="input__wrapper">#}
+{#       <input name="file" type="file" id="input__file" class="input input__file" multiple>#}
+{#       <label for="input__file" class="input__file-button">#}
+{#          <span class="input__file-icon-wrapper"><img class="input__file-icon" src="./img/add.svg" alt="Выбрать файл" width="25"></span>#}
+{#          <span class="input__file-button-text">Выберите файл</span>#}
+{#       </label>#}
+{#    </div>#}
+    <div class="registration_box_button_holder">
+        <button type="submit" id="submitBtn">
+            Add
+        </button>
+    </div>
+    <script>
+
+    </script>
+</form>
+{% endblock %}
+
+{% block smallBottomText %}
+    Quite adding songs?
+{%  endblock %}
+
+{% block urlToRedirect %}
+    <a href="{% url 'cabinet' %}">
+        Back to cabinet.
+    </a>
+{% endblock %}
+
+{% block icon %}
+    <i class="fa fa-bolt" aria-hidden="true"></i>
+{% endblock %}

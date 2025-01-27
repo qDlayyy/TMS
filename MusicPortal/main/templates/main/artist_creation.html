@@ -1,0 +1,39 @@
+{% extends 'main/base_registration.html' %}
+
+{% block title %}
+    New Arist
+{% endblock %}
+
+{% block bigUpperText %}
+    We do appreciate new artists!
+{% endblock %}
+
+{% block formName %}
+    Register as an artist
+{% endblock %}
+
+{% block form %}
+<form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="registration_box_button_holder">
+        <button type="submit">
+            Create
+        </button>
+    </div>
+</form>
+{% endblock %}
+
+{% block smallBottomText %}
+    Quite artist registration?
+{%  endblock %}
+
+{% block urlToRedirect %}
+    <a href="{% url 'home' %}">
+        Home.
+    </a>
+{% endblock %}
+
+{% block icon %}
+    <i class="fa fa-leaf" aria-hidden="true"></i>
+{% endblock %}

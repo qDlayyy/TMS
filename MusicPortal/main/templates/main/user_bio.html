@@ -1,0 +1,39 @@
+{% extends 'main/base_registration.html' %}
+
+{% block title %}
+    User Bio
+{% endblock %}
+
+{% block bigUpperText %}
+    Tell us about yourself!
+{% endblock %}
+
+{% block formName %}
+    Add User Bio
+{% endblock %}
+
+{% block form %}
+<form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="registration_box_button_holder">
+        <button type="submit">
+            Add Bio
+        </button>
+    </div>
+</form>
+{% endblock %}
+
+{% block smallBottomText %}
+    Don't want to add bio?
+{%  endblock %}
+
+{% block urlToRedirect %}
+    <a href="{% url 'user' %}">
+        Back to User.
+    </a>
+{% endblock %}
+
+{% block icon %}
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+{% endblock %}

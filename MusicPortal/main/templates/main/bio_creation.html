@@ -1,0 +1,39 @@
+{% extends 'main/base_registration.html' %}
+
+{% block title %}
+    Artist Bio
+{% endblock %}
+
+{% block bigUpperText %}
+    Make sure your listeners know you better!
+{% endblock %}
+
+{% block formName %}
+    Add Artist Bio
+{% endblock %}
+
+{% block form %}
+<form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="registration_box_button_holder">
+        <button type="submit">
+            Add Bio
+        </button>
+    </div>
+</form>
+{% endblock %}
+
+{% block smallBottomText %}
+    Don't want to add bio?
+{%  endblock %}
+
+{% block urlToRedirect %}
+    <a href="{% url 'cabinet' %}">
+        Back to Cabinet.
+    </a>
+{% endblock %}
+
+{% block icon %}
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+{% endblock %}
