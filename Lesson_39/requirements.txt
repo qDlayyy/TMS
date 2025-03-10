@@ -1,0 +1,4 @@
+aiohttp
+bcrypt
+PyJWT
+python-dotenv
